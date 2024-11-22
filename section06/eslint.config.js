@@ -25,7 +25,7 @@ export default [
         },
         rules: {
             "no-unused-vars": "off",
-            "react/prop-types": "off",
+            "react/prop-types": "on",
             ...js.configs.recommended.rules,
             ...react.configs.recommended.rules,
             ...react.configs["jsx-runtime"].rules,
