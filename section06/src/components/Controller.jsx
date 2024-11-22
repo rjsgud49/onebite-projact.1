@@ -8,7 +8,6 @@ const Controller = ({ onClickButton }) => {
             >
                 -1
             </button>
-
             <button
                 onClick={() => {
                     onClickButton(-10);
@@ -25,21 +24,21 @@ const Controller = ({ onClickButton }) => {
             </button>
             <button
                 onClick={() => {
-                    onClickButton(+100);
+                    onClickButton(100);
                 }}
             >
                 +100
             </button>
             <button
                 onClick={() => {
-                    onClickButton(+10);
+                    onClickButton(10);
                 }}
             >
                 +10
             </button>
             <button
                 onClick={() => {
-                    onClickButton(+1);
+                    onClickButton(1);
                 }}
             >
                 +1
