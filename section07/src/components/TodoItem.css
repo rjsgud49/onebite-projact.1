@@ -1,4 +1,4 @@
-.Todoitem {
+.TodoItem {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -6,17 +6,17 @@
     padding-bottom: 20px;
 }
 
-.Todoitem input {
+.TodoItem input {
     width: 20px;
 }
-.Todoitem .content {
+.TodoItem .content {
     flex: 1;
 }
-.Todoitem .Date {
+.TodoItem .Date {
     font-size: 14px;
     color: grey;
 }
-.Todoitem button {
+.TodoItem button {
     cursor: pointer;
     color: gray;
     font-size: 14px;
