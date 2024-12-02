@@ -1,16 +1,17 @@
 import "./List.css";
 import TodoItem from "./TodoItem";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useContext } from "react";
+import { TodoStateContext } from "../App";
 
-const List = ({ todos, onUpdate, onDelete }) => {
+const List = () => {
+    const todos = useContext(TodoStateContext);
+
     const [search, setSearch] = useState("");
 
-    // 검색어 변경 핸들러
     const onChangeSearch = (e) => {
         setSearch(e.target.value);
     };
 
-    // 필터링된 데이터 가져오기
     const getFilteredData = () => {
         if (search === "") {
             return todos;
@@ -20,23 +21,10 @@ const List = ({ todos, onUpdate, onDelete }) => {
         );
     };
 
-    // 필터링된 데이터
     const filteredTodos = getFilteredData();
 
-    // 통계 데이터 분석
-    const getAnalyzedData = () => {
-        const totalCount = todos.length;
-        const doneCount = todos.filter((todo) => todo.isDone).length;
-        const notDoneCount = totalCount - doneCount;
-
-        return {
-            totalCount,
-            doneCount,
-            notDoneCount,
-        };
-    };
-
-    useMemo(() => {
+    const { totalCount, doneCount, notDoneCount } = useMemo(() => {
+        console.log("getAnalyzedData 호출!");
         const totalCount = todos.length;
         const doneCount = todos.filter((todo) => todo.isDone).length;
         const notDoneCount = totalCount - doneCount;
@@ -47,30 +35,25 @@ const List = ({ todos, onUpdate, onDelete }) => {
             notDoneCount,
         };
     }, [todos]);
-
-    // 분석 데이터 추출
-    const { totalCount, doneCount, notDoneCount } = getAnalyzedData();
+    // 의존성배열 : deps
 
     return (
         <div className="List">
             <h4>Todo List 🌱</h4>
-            <div>전체: {totalCount}</div>
-            <div>완료: {doneCount}</div>
-            <div>미완료: {notDoneCount}</div>
+            <div>
+                <div>total: {totalCount}</div>
+                <div>done: {doneCount}</div>
+                <div>notDone: {notDoneCount}</div>
+            </div>
             <input
                 value={search}
                 onChange={onChangeSearch}
                 placeholder="검색어를 입력하세요"
             />
             <div className="todos_wrapper">
-                {filteredTodos.map((todo) => (
-                    <TodoItem
-                        key={todo.id}
-                        {...todo}
-                        onUpdate={onUpdate}
-                        onDelete={onDelete}
-                    />
-                ))}
+                {filteredTodos.map((todo) => {
+                    return <TodoItem key={todo.id} {...todo} />;
+                })}
             </div>
         </div>
     );
