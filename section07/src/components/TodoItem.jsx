@@ -30,6 +30,4 @@ export default memo(TodoItem, (prevProps, nextProps) => {
     if (prevProps.isDone !== nextProps.isDone) return false;
     if (prevProps.content !== nextProps.isDone) return false;
     if (prevProps.date !== nextProps.isDone) return false;
-    
-
 });
